@@ -103,5 +103,12 @@
   :config
   (setq yas-snippet-dirs (list (concat user-emacs-directory "snippets"))))
 
-(use-package csharp-mode
+(use-package eglot
+  :ensure t
+  :config
+  (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
+  :hook ((c-mode   . eglot-ensure)
+	 (c++-mode . eglot-ensure)))
+
+(use-package sml-mode
   :ensure t)
